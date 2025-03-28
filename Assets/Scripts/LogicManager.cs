@@ -13,9 +13,13 @@ public class LogicManager : MonoBehaviour
     public GameObject gameoverscreen;
     public GameObject[] lifes;
 
+    // Coin and Shield and Life
     private float rangex = 15.5f;
     private float rangez = 14.5f;
     public GameObject coin;
+    public GameObject shield_spawn;
+    private int shield_timer = 0;
+    private int shield_max_time = 0;
     public void GameOver()
     {
         gameoverscreen.SetActive(true);
@@ -34,15 +38,30 @@ public class LogicManager : MonoBehaviour
     public void Addlife(int val)
     {
         life += val;
-        Destroy(lifes[index]);
-        index = (index + 1) % lifes.Length;
+        if (val < 0)
+        {
+            lifes[index].SetActive(false);
+            index = (index + 1) % lifes.Length;
+        }
         if (life == 0) GameOver();
     }
-    public void SpawnCoin()
+    
+    public void SpawnObjects()
     {
         float spawnposx = Random.Range(-rangex, rangex);
         float spawnposz = Random.Range(-0.5f, rangez);
         float spawnposy = 1.2f;
-        Instantiate(coin, new Vector3(spawnposx, spawnposy, spawnposz), transform.rotation);
+        if (shield_max_time == 0) shield_max_time = Random.Range(5, 8);
+        if (shield_timer < shield_max_time)
+        {
+            Instantiate(coin, new Vector3(spawnposx, spawnposy, spawnposz), transform.rotation);
+            shield_timer++;
+        }
+        else
+        {
+            Instantiate(shield_spawn, new Vector3(spawnposx, spawnposy, spawnposz), transform.rotation);
+            shield_timer = 0;
+            shield_max_time = Random.Range(5, 10);
+        }
     }
 }

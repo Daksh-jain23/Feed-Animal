@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5032206269520679302}
   m_Layer: 0
   m_Name: Food_Pizza_01
-  m_TagString: Untagged
+  m_TagString: Pizza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa5e58d752bf0f4d86d868c236c96cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  logic: {fileID: 0}
 --- !u!114 &5032206269520679302
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     public LogicManager logic;
+    public GameObject shield;
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
@@ -24,11 +25,24 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             logic.AddScore(1);
-            logic.SpawnCoin();
+            logic.SpawnObjects();
         }
-        else
+        else if(other.CompareTag("Spawn shield"))
         {
-            logic.Addlife(-1);
+            Destroy(other.gameObject);
+            shield.SetActive(true);
+        }
+        else if (other.CompareTag("Moose") || other.CompareTag("Doe") || other.CompareTag("Fox"))
+        {
+            if (shield.activeSelf)
+            {
+                shield.SetActive(false);
+                Destroy(other.gameObject) ;
+            }
+            else
+            {
+                logic.Addlife(-1);
+            }
         }
     }
 }

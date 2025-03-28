@@ -16,7 +16,7 @@ public class DetectCollisonFood : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Coin"))
+        if (!other.CompareTag("Coin") && !other.CompareTag("Shield"))
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
