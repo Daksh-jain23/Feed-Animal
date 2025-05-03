@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public GameObject shield;
     void Start()
     {
+        Time.timeScale = 0.0f;
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
     }
 

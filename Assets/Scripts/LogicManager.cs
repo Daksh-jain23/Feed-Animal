@@ -11,6 +11,7 @@ public class LogicManager : MonoBehaviour
     private int index = 0;
     public Text scoretext;
     public GameObject gameoverscreen;
+    public GameObject homeScreen;
     public GameObject[] lifes;
 
     // Coin and Shield and Life
@@ -20,6 +21,11 @@ public class LogicManager : MonoBehaviour
     public GameObject shield_spawn;
     private int shield_timer = 0;
     private int shield_max_time = 0;
+    public void Play()
+    {
+        Time.timeScale = 1.0f;
+        homeScreen.SetActive(false);
+    }
     public void GameOver()
     {
         gameoverscreen.SetActive(true);
